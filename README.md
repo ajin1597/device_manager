@@ -37,7 +37,9 @@ npx : 패키지를 실행하는 명령어
 @tailwind utilities;
 ```
 
-4. 시작
+4. Tailwind CSS IntelliSense 확장프로그램 설치
+
+5. 시작
 
 ```
 npm run dev
