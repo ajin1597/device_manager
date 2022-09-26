@@ -20,7 +20,7 @@ npm : 패키지를 설치하는 명령어
 
 npx : 패키지를 실행하는 명령어
 
-2. 경로추가
+2. tailwind.config.js에 경로추가
 
 ```
   content: [
