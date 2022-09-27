@@ -169,3 +169,9 @@ export default async function handler(
       .then((json) => console.log(json));
   }, []);
 ```
+
+# typescript 오류를 한줄만 우회하는 방법(급할때만 사용)
+
+```
+@ts-ignore
+```
