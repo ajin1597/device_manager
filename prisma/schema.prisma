@@ -27,3 +27,11 @@ model Post {
   createAt DateTime @default(now())
   usdateAt DateTime @updatedAt
 }
+
+model Device {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  body     String
+  createAt DateTime @default(now())
+  usdateAt DateTime @updatedAt
+}

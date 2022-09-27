@@ -5,3 +5,7 @@
 body {
   background-color: #dae0ed;
 }
+
+.sunmoon_btn {
+  @apply bg-red-500;
+}
