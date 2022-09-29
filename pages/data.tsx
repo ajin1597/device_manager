@@ -1,10 +1,7 @@
 import type { NextPage } from "next";
-import Link from "next/link";
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { Device } from "@prisma/client";
-import { json } from "stream/consumers";
-import test from "node:test";
 import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
@@ -28,19 +25,15 @@ const Home: NextPage = () => {
     const inputStr: string = event.currentTarget.value;
 
     setSencingValue(inputStr);
-
-    console.log(deviceId, inputStr);
   }
 
-  // function 등록버튼클릭() {
-  //   const data = { value: sencingvalue };
-  //   fetch(`/api/sencing/${deviceId}`, {
-  //     method: "POST",
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => setAlldevice(json));
-  // }
+  function 등록버튼클릭() {
+    const data = { value: sencingvalue };
+    fetch(`/api/sencing/${deviceId}`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
 
   return (
     <Layout title="DATA">
@@ -56,7 +49,6 @@ const Home: NextPage = () => {
                 {alldevice.map((device, idx) => {
                   return (
                     <option key={idx} value={device.id}>
-                      {" "}
                       {device.type}-{device.location}-{device.memo}
                     </option> //type, local~, memo
                   );
@@ -74,7 +66,7 @@ const Home: NextPage = () => {
             />
             <button
               className="border-2 mt-3 p-3 rounded-xl hover:bg-[#5492FF] dark:bg-gray-500 dark:hover:bg-gray-700"
-              // onClick={등록버튼클릭}
+              onClick={등록버튼클릭}
             >
               등록
             </button>

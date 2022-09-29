@@ -12,7 +12,7 @@ import { PacmanLoader } from "react-spinners";
 
 const Home: NextPage = () => {
   const [devices, setDevice] = useState<Device[]>([]);
-  const [bToggle, setBToggle] = useState(true);
+  const [bToggle, setBToggle] = useState(false);
 
   useEffect(() => {
     fetch("/api/device/all")

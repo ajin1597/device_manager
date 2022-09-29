@@ -31,7 +31,20 @@ export default async function handler(
   try {
     switch (request.method) {
       case "GET":
-        const result = await client.sencing.findFirst({});
+        const result = await client.sencing.findFirst({
+          where: {
+            deviceId: deviceId.toString(),
+          },
+          select: {
+            // 필드를 선택할 수 있음
+            // 선택한 필드만 가져오려면 boolean
+            value: true,
+          },
+          orderBy: {
+            // 정렬
+            createAt: "desc", // createAt 기준으로 오름차순으로 정렬
+          },
+        });
         response.status(200).json({ ok: false, value: result?.value });
         break;
       case "POST":
@@ -49,31 +62,11 @@ export default async function handler(
 
         response.status(200).json({ ok: true });
         break;
+      default:
+        console.log(request.body);
     }
-
-    // try {
-    //   console.log("여까지 출력됨");
-
-    //   const result = await client.sencing.findFirst({
-    //     where: {
-    //       deviceId: deviceId.toString(),
-    //     },
-    //     select: {
-    //       // 필드를 선택할 수 있음
-    //       // 선택한 필드만 가져오려면 boolean
-    //       value: true,
-    //     },
-    //     orderBy: {
-    //       // 정렬
-    //       createAt: "desc", // createAt 기준으로 오름차순으로 정렬
-    //     },
-    //   });
-
-    // console.log(result);
-
-    // response.status(200).json({ ok: true, value: result?.value });
   } catch (err) {
-    response.status(200).json({ ok: false, error: `${err}` });
+    response.status(400).json({ ok: false, error: `${err}` });
   } finally {
     //예외가 있던 없던 실행되는 블럭
     await client.$disconnect();

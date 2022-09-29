@@ -19,10 +19,6 @@ export default async function handler(
     return;
   }
 
-  // const {
-  //   body: { product, location, type, unit, meno },
-  // } = request;
-
   const { product, location, type, unit, memo } = JSON.parse(request.body);
   console.log(memo);
 
