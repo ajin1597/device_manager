@@ -38,7 +38,7 @@ const Home: NextPage = () => {
       <div className="h-full p-6 space-y-7">
         <div id="top" className=" flex justify-between items-center">
           <div>
-            <div className="text-3xl font-bold">Hello SunMoon👍</div>
+            <div className="text-3xl font-bold">Hello ksw👍</div>
             <div className="text-gray-500">Wellcome back to home</div>
           </div>
           <Link href={"/setting"}>
