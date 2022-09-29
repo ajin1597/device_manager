@@ -1,8 +1,38 @@
+import { Device } from "@prisma/client";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { json } from "stream/consumers";
+import DeviceCard from "../components/DeviceCard";
 import Layout from "../components/Layout";
 
+import Toggle from "react-toggle";
+import { relative } from "path";
+import { PacmanLoader } from "react-spinners";
+
 const Home: NextPage = () => {
+  const [devices, setDevice] = useState<Device[]>([]);
+  const [bToggle, setBToggle] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/device/all")
+      .then((res) => res.json())
+      .then((json) => {
+        // console.log(json.alldevice);
+        setDevice(json.alldevice);
+      });
+  }, []);
+
+  function 토글변경() {
+    setBToggle(!bToggle);
+    console.log(`--${!bToggle}`);
+    if (!bToggle) {
+      console.log("실시간on");
+    } else {
+      console.log("실시간off");
+    }
+  }
+
   return (
     <Layout title="HOME">
       <div className="h-full p-6 space-y-7">
@@ -35,26 +65,33 @@ const Home: NextPage = () => {
         <div id="mid">
           <div className="flex justify-between items-center">
             <div className="text-2xl font-bold">Linked to you</div>
-            <div>실시간 버튼</div>
+            <div className="selet-nome flex items-center space-x-2">
+              {bToggle && (
+                <div className="h-12 w-20">
+                  <PacmanLoader color="#36d7b7" />
+                </div>
+              )}
+              <Toggle
+                id="cheese-status"
+                onChange={토글변경}
+                defaultChecked={bToggle}
+                // defaultChecked={this.state.cheeseIsReady}
+                // onChange={this.handleCheeseChange}
+              />
+              <label htmlFor="cheese-status">
+                실시간 <span>{bToggle ? "ON" : "OFF"}</span>
+              </label>
+            </div>
           </div>
         </div>
 
         <div id="bot" className=" flex flex-wrap ">
-          {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((device, idx) => (
-            <div
+          {devices.map((device, idx) => (
+            <DeviceCard
               key={idx}
-              data-comment="장비카드"
-              className="bg-red-200 border-2 w-60 h-52 p-4 flex flex-col justify-between rounded-xl dark:text-white m-5 dark:bg-[#363345]"
-            >
-              <div className="flex justify-end ">
-                <span className="text-4xl font-bold">25</span>
-                <span className="text-xl font-bold">%</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-gray-500">안방 - 멤멤</span>
-                <span className="text-2xl font-bold">샤오미 공기청정기</span>
-              </div>
-            </div>
+              device={device}
+              realTime={bToggle}
+            ></DeviceCard>
           ))}
         </div>
       </div>

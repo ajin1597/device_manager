@@ -175,3 +175,35 @@ export default async function handler(
 ```
 @ts-ignore
 ```
+
+# prisma_Db
+
+```
+
+model Device {
+ id:  ~~~
+sencings Sencing[] // 작성 후 저장
+}
+
+model Sencing {
+ id:  ~~~
+}
+```
+
+# schema.prisma
+
+```
+
+model Device {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  createAt DateTime @default(now())
+  usdateAt DateTime @updatedAt
+
+  product  String
+  meno     String? //추가 할 때는 ?를 붙여서 추가
+  sencings Sencing[]
+}
+```
+
+자신있으면 복사한뒤 해당 요소에 관한 값을 넣어준 뒤 넣거나
+자신없으면 데이터 삭제 후 새로 데이터 삽입

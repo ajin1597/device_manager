@@ -19,5 +19,10 @@ export default async function handler(
     const users = await client.user.findMany();
     console.log(users);
     res.status(200).json({ name: "asdasdasd", users });
-  } catch (err) {}
+  } catch (err) {
+    // res.status(200).json({ ok: false });
+  } finally {
+    //예외가 있던 없던 실행되는 블럭
+    await client.$disconnect();
+  }
 }

@@ -2,8 +2,6 @@ import { User } from "@prisma/client";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { json } from "stream/consumers";
-import Counters from "../components/Counter";
 
 const Home: NextPage = () => {
   const [users, setUsers] = useState<User[]>([]);

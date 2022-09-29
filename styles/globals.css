@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "react-toggle/style.css";
+
 body {
   background-color: #dae0ed;
 }
 
 .sunmoon_btn {
-  @apply bg-red-500;
+  @apply bg-gradient-to-t from-cyan-500 to-blue-500;
 }

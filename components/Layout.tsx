@@ -10,7 +10,6 @@ interface LayoutProps {
 
 export default function Layout(props: LayoutProps) {
   const router = useRouter();
-  console.log(router.pathname);
 
   function darkMode() {
     document.querySelector("body")?.classList.toggle("dark"); // 다크모드 (toggle매서드)
