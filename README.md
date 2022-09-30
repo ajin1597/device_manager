@@ -47,7 +47,7 @@ npm run dev
 
 # prisma
 
-database ORM 이다.
+database ORM 이다 .
 
 1. VScode `prisma` 확장프로그램 설치
 
